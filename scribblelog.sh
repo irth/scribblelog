@@ -24,10 +24,10 @@ for i in ./notebook/*/*.rm; do
     md5sum "$i" >> hashes
 done
 
-rm -rf out
-mkdir -p out/svgs
-cp -R svgs/*.svg out/svgs
-cp logo.svg out/logo.svg
-cat header.html > out/index.html
-ls -1 svgs/*.svg | sort -nr | while read i; do echo "<div class=\"page\"><img src=\"$i\"></div>" >> out/index.html; done;
-cat footer.html >> out/index.html
+rm -rf docs
+mkdir -p docs/svgs
+cp -R svgs/*.svg docs/svgs
+cp logo.svg docs/logo.svg
+cat header.html > docs/index.html
+ls -1 svgs/*.svg | sort -nr | while read i; do echo "<div class=\"page\"><img src=\"$i\"></div>" >> docs/index.html; done;
+cat footer.html >> docs/index.html
