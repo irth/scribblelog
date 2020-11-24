@@ -29,5 +29,6 @@ mkdir -p docs/svgs
 cp -R svgs/*.svg docs/svgs
 cp logo.svg docs/logo.svg
 cat header.html > docs/index.html
+echo "<!-- GENERATED AT $(date) -->" >> docs/index.html
 ls -1 svgs/*.svg | sort -nr | while read i; do echo "<div class=\"page\"><img src=\"$i\"></div>" >> docs/index.html; done;
 cat footer.html >> docs/index.html
