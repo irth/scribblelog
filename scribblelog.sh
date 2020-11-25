@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+git pull # pull before changing
 touch hashes
 rmapi get Scribblelog
 rm -rf notebook
