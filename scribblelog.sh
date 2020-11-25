@@ -34,6 +34,6 @@ ls -1 svgs/*.svg | sort -nr | while read i; do echo "<div class=\"page\"><img sr
 cat footer.html >> docs/index.html
 
 git add docs && {
-    git commit -m "autobuild: ${date}"
+    git commit -m "autobuild: $(date)"
     git push
 }
