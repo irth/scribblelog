@@ -26,14 +26,17 @@ done
 
 rm -rf docs
 mkdir -p docs/svgs
-cp -R svgs/*.svg docs/svgs
 cp logo.svg docs/logo.svg
 cat header.html > docs/index.html
-echo "<!-- GENERATED AT $(date) -->" >> docs/index.html
-ls -1 svgs/*.svg | sort -nr | while read i; do echo "<div class=\"page\"><img src=\"$i\"></div>" >> docs/index.html; done;
+ls -1 svgs/*.svg | sort -nr | while read i; do
+    sum=$(echo -n "$i"|md5sum);
+    name="${sum%% *}.${i##*.}"
+    cp "$i" "docs/svgs/$name";
+    echo "<div class=\"page\"><img src=\"svgs/$name\"></div>" >> docs/index.html
+done
 cat footer.html >> docs/index.html
 
-git add docs && {
+[[ $# > 0 ]] && git add docs && {
     git commit -m "autobuild: $(date)"
     git push
 }
