@@ -2,7 +2,6 @@
 git pull # pull before changing
 touch hashes
 rmapi get Scribblelog
-rm -rf notebook
 unzip -d notebook Scribblelog.zip
 mkdir -p svgs
 mkdir -p new_svgs
@@ -36,7 +35,8 @@ ls -1 svgs/*.svg | sort -nr | while read i; do
 done
 cat footer.html >> docs/index.html
 echo scribble.irth.pl > docs/CNAME
-
+rm Scribblelog.zip 
+rm -rf notebook
 [[ $# > 0 ]] && git add docs && {
     git commit -m "autobuild: $(date)"
     git push
