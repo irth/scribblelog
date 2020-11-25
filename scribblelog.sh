@@ -28,7 +28,7 @@ mkdir -p docs/svgs
 cp logo.svg docs/logo.svg
 cat header.html > docs/index.html
 ls -1 svgs/*.svg | sort -nr | while read i; do
-    sum=$(echo -n "$i"|md5sum);
+    sum=$(md5sum "$i");
     name="${sum%% *}.${i##*.}"
     cp "$i" "docs/svgs/$name";
     echo "<div class=\"page\"><img src=\"svgs/$name\"></div>" >> docs/index.html
